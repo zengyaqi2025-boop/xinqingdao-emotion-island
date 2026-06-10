@@ -795,6 +795,7 @@ body[data-energy="high"] .player {
   display: none;
   place-items: center;
   padding: 24px;
+  overflow-y: auto;
   background: rgba(20, 32, 26, 0.3);
   backdrop-filter: blur(10px);
 }
@@ -948,6 +949,16 @@ body[data-energy="high"] .player {
 }
 
 @media (max-width: 860px) {
+  .start-modal {
+    align-items: start;
+    padding: 18px 14px calc(24px + env(safe-area-inset-bottom));
+  }
+
+  .start-card {
+    margin: 0 auto;
+    max-height: none;
+  }
+
   .game-shell {
     width: min(100% - 20px, 680px);
     padding: 14px 0;
@@ -997,6 +1008,14 @@ body[data-energy="high"] .player {
   .final-bag,
   .route-grid {
     grid-template-columns: 1fr;
+  }
+
+  .route-grid {
+    gap: 8px;
+  }
+
+  .route-grid button {
+    min-height: 92px;
   }
 
   .bag-slot {
