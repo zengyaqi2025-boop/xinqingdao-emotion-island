@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>心晴岛：情绪和解冒险</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">AuraLab x 鲁美艺术疗愈策展人高研班｜展厅互动原型</p>
+          <h1>心晴岛</h1>
+          <p class="subtitle" id="levelSubtitle">选择今天的情绪，进入一段生命流动旅程</p>
+        </div>
+        <div class="hud" aria-label="游戏状态">
+          <div>
+            <span>关卡</span>
+            <strong id="levelText">0/3</strong>
+          </div>
+          <div>
+            <span>照顾能量</span>
+            <strong id="energyText">55</strong>
+          </div>
+          <div>
+            <span>已安抚</span>
+            <strong id="soothedText">0/3</strong>
+          </div>
+          <button type="button" id="musicBtn" aria-pressed="false">音乐</button>
+          <button type="button" id="demoBtn">演示</button>
+          <button type="button" id="resetBtn">重来</button>
+        </div>
+      </header>
+
+      <section class="game-card" aria-label="情绪横版小游戏">
+        <div class="scene" id="scene">
+          <div class="sky-layer">
+            <span class="cloud c1"></span>
+            <span class="cloud c2"></span>
+            <span class="cloud c3"></span>
+            <span class="moon"></span>
+            <span class="theme-deco d1"></span>
+            <span class="theme-deco d2"></span>
+            <span class="theme-deco d3"></span>
+            <span class="theme-deco d4"></span>
+          </div>
+          <div class="world" id="world">
+            <div class="platform ground"></div>
+            <div class="platform p1"></div>
+            <div class="platform p2"></div>
+            <div class="platform p3"></div>
+            <div class="portal" id="portal">
+              <span></span>
+              <strong id="portalText">锦囊</strong>
+            </div>
+            <div class="player" id="player" aria-label="心情小人">
+              <span class="face">•‿•</span>
+              <i></i>
+            </div>
+          </div>
+          <div class="message" id="message">方向键移动，空格跳跃。碰到情绪小怪物，把它们安抚成光。</div>
+        </div>
+
+        <div class="control-row">
+          <button type="button" data-control="left">←</button>
+          <button type="button" data-control="down">钻</button>
+          <button type="button" data-control="jump">跳</button>
+          <button type="button" data-control="right">→</button>
+        </div>
+      </section>
+
+      <section class="bag" aria-label="锦囊背包">
+        <div class="bag-head">
+          <span>锦囊背包</span>
+          <strong id="bagCount">0/3</strong>
+        </div>
+        <div class="bag-grid" id="bagGrid"></div>
+      </section>
+
+      <section class="metrics" aria-label="情绪数值">
+        <div class="metric-card">
+          <span>压力</span>
+          <strong id="stressMetric">42</strong>
+          <i><b id="stressBar"></b></i>
+        </div>
+        <div class="metric-card">
+          <span>焦虑</span>
+          <strong id="anxietyMetric">48</strong>
+          <i><b id="anxietyBar"></b></i>
+        </div>
+        <div class="metric-card">
+          <span>孤独</span>
+          <strong id="lonelyMetric">34</strong>
+          <i><b id="lonelyBar"></b></i>
+        </div>
+        <div class="metric-card">
+          <span>恢复</span>
+          <strong id="restoreMetric">40</strong>
+          <i><b id="restoreBar"></b></i>
+        </div>
+      </section>
+
+      <section class="brief">
+        <div>
+          <span>玩法</span>
+          <p>选择当下情绪，进入专属路线：跳过障碍、钻过低洞、靠近情绪小怪物，把它们安抚成光。星星影响锦囊品质。</p>
+        </div>
+        <div>
+          <span>隐喻</span>
+          <p>情绪不是敌人。它只是过去十年里，某些还没有被看见、命名和温柔安放的生命经验。</p>
+        </div>
+        <div>
+          <span>现场话术</span>
+          <p>这是一个可玩的艺术疗愈互动装置原型：让观众从自己的状态出发，体验科技如何帮助人重新靠近自己。</p>
+        </div>
+      </section>
+    </main>
+
+    <div class="start-modal show" id="startModal" aria-live="polite">
+      <div class="start-card">
+        <p>今天从哪里开始？</p>
+        <h2>选择你的情绪入口</h2>
+        <div class="route-grid">
+          <button type="button" data-route="anxiety"><span>焦虑</span><strong>从混乱到下一步</strong></button>
+          <button type="button" data-route="fear"><span>恐惧</span><strong>从退缩到安全感</strong></button>
+          <button type="button" data-route="hurt"><span>委屈</span><strong>从受伤到边界</strong></button>
+          <button type="button" data-route="tired"><span>疲惫</span><strong>从硬撑到恢复</strong></button>
+          <button type="button" data-route="lonely"><span>孤独</span><strong>从隔绝到连接</strong></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reward-modal" id="rewardModal" aria-live="polite">
+      <div class="reward-card">
+        <p id="rewardKicker">获得锦囊</p>
+        <h2 id="rewardTitle">呼吸锦囊</h2>
+        <strong id="rewardBody">慢慢呼气，让身体先知道你是安全的。</strong>
+        <small id="rewardUse">下一关可用：遇到情绪时，先停一秒再靠近。</small>
+        <button type="button" id="nextLevelBtn">进入下一关</button>
+      </div>
+    </div>
+
+    <div class="finish-modal" id="finishModal" aria-live="polite">
+      <div class="finish-card">
+        <p>情绪旅程完成</p>
+        <h2>今天的你，被好好接住了</h2>
+        <strong id="finishText">你带回了 3 个锦囊。</strong>
+        <div class="final-bag" id="finalBag"></div>
+        <small id="supportText">如果你愿意，可以把今天的锦囊保存下来，作为下一次情绪波动时的温柔提醒。</small>
+        <button type="button" id="playAgainBtn">再玩一次</button>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
