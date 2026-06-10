@@ -58,7 +58,7 @@ function ensureAudio() {
   if (!AudioContext) return null;
   const ctx = new AudioContext();
   const master = ctx.createGain();
-  master.gain.value = 0.18;
+  master.gain.value = 0.32;
   master.connect(ctx.destination);
   audioState.ctx = ctx;
   audioState.master = master;
@@ -85,6 +85,11 @@ function playTone(frequency, duration = 0.22, type = "sine", gain = 0.08, delay 
   toneGain.connect(audioState.master);
   oscillator.start(startAt);
   oscillator.stop(endAt + 0.04);
+}
+
+function playUnlockSound() {
+  playTone(523.25, 0.12, "sine", 0.11);
+  playTone(783.99, 0.18, "triangle", 0.09, 0.1);
 }
 
 function playSoftChord(root = 261.63) {
@@ -143,6 +148,7 @@ async function startAudio() {
   musicBtn.setAttribute("aria-pressed", "true");
   startDrone();
   scheduleAmbient();
+  playUnlockSound();
   playSoftChord(261.63);
 }
 
